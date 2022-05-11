@@ -15,12 +15,13 @@ body {
 
 	.books {
 		.book {
-			background-color: #666;
+			background-color: #444;
 			padding: 10px;
 			border-radius: 5px;
 			margin: 0 0 10px 0;
+			font-size: 1rem;
 			.title {
-				color: black;
+				color: rgb(246, 219, 168);
 			}
 		}
 	}

@@ -16,7 +16,19 @@ export const PageBooks = () => {
 
 	const createBooks = (bookData) => {
 		const _books = [];
-		_books.push({ title: 'Test Book #1' }, {title:"Second Book"});
+
+		const getReadUrl = (book) => {
+			return 'nnn';
+		}
+		bookData.results.forEach(book => {
+			_books.push(
+				{
+					title: book.title,
+					author: book.authors[0].name,
+					readUrl: getReadUrl(book)
+				}
+			)
+		});
 		setBooks(_books);
 	};
 
@@ -39,6 +51,8 @@ export const PageBooks = () => {
 							return (
 								<div key={index} className="book">
 									<div className="title">{book.title}</div>
+									<div className="author">{book.author}</div>
+									<div className="test">{book.readUrl}</div>
 								</div>
 							);
 						})}
