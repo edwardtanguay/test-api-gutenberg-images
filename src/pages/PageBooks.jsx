@@ -18,16 +18,24 @@ export const PageBooks = () => {
 		const _books = [];
 
 		const getReadUrl = (book) => {
-			return 'nnn';
-		}
-		bookData.results.forEach(book => {
-			_books.push(
-				{
-					title: book.title,
-					author: book.authors[0].name,
-					readUrl: getReadUrl(book)
+			let r = '';
+			const entries = Object.entries(book.formats);
+			entries.forEach((entry) => {
+				const key = entry[0];
+				const value = entry[1];
+				if (key.includes('text/html')) {
+					r = value;
 				}
-			)
+			});
+			return r;
+		};
+
+		bookData.results.forEach((book) => {
+			_books.push({
+				title: book.title,
+				author: book.authors[0].name,
+				readUrl: getReadUrl(book),
+			});
 		});
 		setBooks(_books);
 	};
@@ -50,9 +58,8 @@ export const PageBooks = () => {
 						{books.map((book, index) => {
 							return (
 								<div key={index} className="book">
-									<div className="title">{book.title}</div>
+									<div className="title"><a href={book.readUrl} target="_blank">{book.title}</a></div>
 									<div className="author">{book.author}</div>
-									<div className="test">{book.readUrl}</div>
 								</div>
 							);
 						})}
